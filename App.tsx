@@ -31,6 +31,9 @@ const App = () => {
           <Text style={{color: 'red'}}>Caclulate inflation</Text>
         </View>
       </Pressable>
+      <View>
+        <Text style={{color: 'red'}}>Feature-1</Text>
+      </View>
     </View>
     // </SafeAreaView>
   );

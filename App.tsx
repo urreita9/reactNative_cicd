@@ -32,7 +32,7 @@ const App = () => {
         </View>
       </Pressable>
       <View>
-        <Text style={{color: 'red'}}>Feature-1</Text>
+        <Text style={{color: 'red'}}>Feature-1b</Text>
       </View>
     </View>
     // </SafeAreaView>

@@ -1,109 +1,39 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {useEffect} from 'react';
+import {SafeAreaView, Text, Pressable, Alert, View} from 'react-native';
+import Crashes from 'appcenter-crashes';
+import Analytics from 'appcenter-analytics';
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
+const checkPreviousSession = async () => {
+  const didCrash = await Crashes.hasCrashedInLastSession();
+  if (didCrash) {
+    Alert.alert('Sorry for the crash');
+  }
 };
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+const App = () => {
+  useEffect(() => {
+    checkPreviousSession();
+  }, []);
+  return (
+    // <SafeAreaView>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'yellow',
+      }}>
+      <Pressable
+        onPress={() => {
+          Analytics.trackEvent('Calculate_inflation');
+        }}>
+        <View>
+          <Text style={{color: 'red'}}>Caclulate inflation</Text>
+        </View>
+      </Pressable>
+    </View>
+    // </SafeAreaView>
+  );
+};
 
 export default App;

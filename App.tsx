@@ -32,7 +32,7 @@ const App = () => {
         </View>
       </Pressable>
       <View>
-        <Text style={{color: 'red'}}>Feature-1c JAVA_HOME</Text>
+        <Text style={{color: 'red'}}>Feature-1e JAVA_HOME 17</Text>
       </View>
     </View>
     // </SafeAreaView>
